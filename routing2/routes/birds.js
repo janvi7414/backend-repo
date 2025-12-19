@@ -22,3 +22,5 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
+
+// to rename a file Rename-Item -Path "router" -NewName "routes"
