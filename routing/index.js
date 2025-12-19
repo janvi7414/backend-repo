@@ -4,10 +4,12 @@ const port = 3000
 
 
 app.get('/', (req, res) => {
-  res.send('Get request sent')
+  // res.send('Get request sent')
+  res.sendFile('./dummy.html',{root: __dirname});
 })
 app.post('/items', (req, res) => {
-  res.send('Post request sent')
+  // res.send('Post request sent')
+  res.json({x:1, y:2, z:3})
 })
 app.put('/items/:id', (req, res) => {
   res.send('Put request sent to update')
