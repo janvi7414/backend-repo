@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-import connectDb from './db';
+const connectDb = require('./db');
 
 app.use(express.json())
 
