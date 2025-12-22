@@ -1,9 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
 const connectDb = require('./db');
+const dotenv = require('dotenv');
+const router = require('./routes/user');
+
+//loading env first
+dotenv.config();
 
 app.use(express.json())
+
+app.use('/api', router);
+
 
 //connect to database
 connectDb();
@@ -13,7 +20,7 @@ app.get('/',(req, res) => {
 })
 
 
-app.listen(port,()=>{
+app.listen(process.env.PORT ,()=>{
     console.log("listening....");
 })
 
