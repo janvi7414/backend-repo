@@ -11,6 +11,7 @@ router.post('/user', async (req, res) => {
         const {name, age, weight} = req.body;
         const newUser = new userModel({name, age, weight});
         await newUser.save();
+        console.log("success post req");
 
         //if saved successfully
 
@@ -36,7 +37,9 @@ router.get('/user', async (req, res) =>{
         //listing all the documents i.e. users out of db
         const users = await userModel.find();
         res.status(200).json(users);
-    }catch(err){
+        console.log("success get req");
+    }
+    catch(err){
         res.status(500).json(
             {
                 success: false,
@@ -46,7 +49,43 @@ router.get('/user', async (req, res) =>{
     }
 })
 
-//
+//Update
+router.put('/user/:id',async (req, res) => {
+    const {id} = req.params;
+    const {name, age, weight} = req.body;
+
+    try{
+
+        //finding doc with id
+        const updatedUser = await userModel.findByIdAndUpdate(
+            id,
+            {name, age, weight},
+            {new: true}
+        );
+        //  by default findById.. returns the old doc
+
+        //if no match found
+        if(!updatedUser){
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+        //when updated successfully
+
+        res.status(200).json({
+            success: true,
+            // here "user" is key it could be data, person etc and i set it
+            user: updatedUser
+        })
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+})
 
 
 

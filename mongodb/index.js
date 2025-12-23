@@ -16,7 +16,7 @@ app.use('/api', router);
 connectDb();
 
 app.get('/',(req, res) => {
-    res.send("get request received...");
+    res.send("get request hit");
 })
 
 
