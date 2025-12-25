@@ -24,3 +24,5 @@ const UserSchema = new Schema({
 const UserModel = model("User", UserSchema)
 
 module.exports = UserModel
+
+// here "User" is model name which mongoose use and "UserModel" is a js variable we use to talk to the database 
